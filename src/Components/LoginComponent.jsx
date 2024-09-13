@@ -34,6 +34,7 @@ export default function LoginComponent() {
       {/* Main Content */}
       <div className="relative md:w-full w-80 md:max-w-sm bg-gray-900 p-6 rounded-lg shadow-md border-rgb border-gray-800 z-10 rgb-border">
         <div className="flex justify-center items-center mb-2">
+          {/* Gambar logo untuk halaman login */}
           <img className="w-28" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDbzc545h-aXan19MbkEgA5h4FN_A5BSJRqQ&s" alt="" />
         </div>
         <h2 className="md:text-2xl text-xl font-semibold text-center text-white mb-4">

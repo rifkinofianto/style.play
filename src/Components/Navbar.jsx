@@ -2,8 +2,9 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "../App.css";
 
+// Komponen Navbar untuk menampilkan navigasi aplikasi
 function Navbar({ page }) {
-
+  // Mengembalikan elemen header dengan logo dan tautan navigasi
   return (
     <header className="bg-blue-600 p-4 rgb-gradient">
       <div className="flex justify-center items-center">
@@ -33,8 +34,9 @@ function Navbar({ page }) {
   );
 }
 
+// Menentukan tipe prop untuk komponen Navbar
 Navbar.propTypes = {
-  page: PropTypes.string.isRequired,
+  page: PropTypes.string.isRequired, // Halaman saat ini yang ditampilkan
 };
 
 export default Navbar;

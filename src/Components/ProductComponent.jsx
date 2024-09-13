@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ProductComponent = () => {
+  // Daftar aturan yang harus diikuti
   const rules = [
     {
       id: 1,
@@ -33,6 +34,7 @@ const ProductComponent = () => {
     },
   ];
 
+  // Daftar produk yang tersedia untuk dipesan
   const products = [
     {
       id: 1,
@@ -58,8 +60,10 @@ const ProductComponent = () => {
     },
   ];
 
+  // Daftar kursi yang tersedia
   const seats = Array.from({ length: 10 }, (_, i) => i + 1);
 
+  // State untuk menyimpan data form
   const [formData, setFormData] = useState({
     seat: "",
     roomType: "Reguler",
@@ -71,10 +75,12 @@ const ProductComponent = () => {
 
   const navigate = useNavigate();
 
+  // Fungsi untuk menangani perubahan input
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Fungsi untuk menangani pengiriman form
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -110,6 +116,7 @@ const ProductComponent = () => {
     navigate("/booking-details", { state: bookingDetails });
   };
 
+  // Fungsi untuk memformat angka menjadi format Rupiah
   function formatRupiah(number) {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -120,6 +127,7 @@ const ProductComponent = () => {
 
   return (
     <div className="min-h-screen md:px-56 md:py-5 px-3 py-5">
+      {/* Judul dan aturan */}
       <h1 className="text-xl md:text-3xl font-bold text-center underline">
         Rules of Club Rusa
       </h1>
@@ -130,6 +138,7 @@ const ProductComponent = () => {
           </p>
         ))}
       </div>
+      {/* Judul dan daftar produk */}
       <h1 className="text-xl md:text-3xl font-bold text-center underline mt-10 mb-5">
         Products or Services
       </h1>
@@ -158,12 +167,13 @@ const ProductComponent = () => {
         })}
       </div>
 
-      {/* Form for booking */}
+      {/* Form untuk pemesanan */}
       <div className="mt-10">
         <h2 className="text-xl md:text-3xl font-bold text-center underline">
           Book a Seat
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-5">
+          {/* Pilihan kursi */}
           <div>
             <label className="block text-lg md:text-xl font-semibold mb-2">
               Choose a Seat:
@@ -183,6 +193,7 @@ const ProductComponent = () => {
             </select>
           </div>
 
+          {/* Pilihan jenis ruangan */}
           <div>
             <label className="block text-lg md:text-xl font-semibold mb-2">
               Room Type:
@@ -198,6 +209,7 @@ const ProductComponent = () => {
             </select>
           </div>
 
+          {/* Input jam pemesanan */}
           <div>
             <label className="block text-lg md:text-xl font-semibold mb-2">
               Hours:
@@ -212,6 +224,7 @@ const ProductComponent = () => {
             />
           </div>
 
+          {/* Pilihan produk */}
           <div>
             <label className="block text-lg md:text-xl font-semibold mb-2">
               Choose a Product:
@@ -230,6 +243,7 @@ const ProductComponent = () => {
             </select>
           </div>
 
+          {/* Input tanggal pemesanan */}
           <div>
             <label className="block text-lg md:text-xl font-semibold mb-2">
               Select Date:
@@ -239,11 +253,12 @@ const ProductComponent = () => {
               name="selectedDate"
               value={formData.selectedDate}
               onChange={handleChange}
-              min={new Date().toISOString().split("T")[0]} // Menonaktifkan tanggal sebelumnya
+              min={new Date().toISOString().split("T")[0]}
               className="p-2 border border-gray-300 rounded-md w-full"
             />
           </div>
 
+          {/* Tombol untuk mengirim form */}
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

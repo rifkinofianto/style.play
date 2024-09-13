@@ -1,9 +1,7 @@
 import BookingDetails from "../Components/BookingDetails";
 
 const BookingDetailsPage = () => {
-    return (
-        <BookingDetails/>
-    );
+  return <BookingDetails />;
 };
 
-export default BookingDetailsPage
+export default BookingDetailsPage;

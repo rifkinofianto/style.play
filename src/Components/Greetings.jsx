@@ -4,19 +4,23 @@ export default function Greetings() {
     {
       id: 1,
       description:
-        "Untuk menggunakan promo Room Normal di atas 4 jam dan 7 jam bisa tetap book melalui WA kami 085179558820 (Jika tidak ingin menggunakan promo bisa book secara mandiri disini)",
+        "Pemesanan hanya dapat dilakukan melalui website resmi atau langsung di lokasi.",
     },
     {
       id: 2,
       description:
-        "Booking bisa DP 50% terlebih dahulu (menggunakan kode promo “DP 50”) atau bisa langsung full payment",
+        "Pembayaran penuh harus dilakukan di muka saat pemesanan melalui website.",
     },
     {
       id: 3,
-      description: "NO RESCHEDULE / REFUND",
+      description : "Jika pelanggan datang terlambat, waktu pemesanan tetap dihitung sejak waktu yang dijadwalkan."
     },
     {
       id: 4,
+      description: "NO RESCHEDULE / REFUND",
+    },
+    {
+      id: 5,
       description: "Jika ingin cancel diharapkan infokan ke admin whatsapp",
     },
   ];
