@@ -30,13 +30,10 @@ export default function LoginComponent() {
   const isButtonDisabled = !email || !password;
 
   return (
-    <div className="flex items-center justify-center min-h-screen relative">
-      {/* Background RGB Gradient */}
-      <div className="rgb-gradient"></div>
-
+    <div className="flex items-center justify-center min-h-screen relative rgb-gradient">
       {/* Main Content */}
-      <div className="relative w-full max-w-sm bg-gray-900 p-6 rounded-lg shadow-md border-rgb border-gray-800 z-10 rgb-border">
-        <h2 className="text-3xl font-semibold text-center text-white mb-6">
+      <div className="relative md:w-full w-80 md:max-w-sm bg-gray-900 p-6 rounded-lg shadow-md border-rgb border-gray-800 z-10 rgb-border">
+        <h2 className="md:text-3xl text-2xl font-semibold text-center text-white mb-6">
           Login
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -52,7 +49,7 @@ export default function LoginComponent() {
               onFocus={handleEmailFocus}
               onChange={(e) => setEmail(e.target.value)}
               disabled={isEmailDisabled}
-              className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-white"
+              className="mt-1 block w-full px-3 py-2 rgb-input rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-white"
             />
           </div>
           <div>
@@ -67,7 +64,7 @@ export default function LoginComponent() {
               onFocus={handlePasswordFocus}
               onChange={(e) => setPassword(e.target.value)}
               disabled={isPasswordDisabled}
-              className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-white"
+              className="mt-1 block w-full px-3 py-2 rgb-input rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-white"
             />
           </div>
           <div className="flex items-center justify-between">
@@ -85,7 +82,7 @@ export default function LoginComponent() {
             </a>
           </div>
           <div>
-            <button className="w-full bg-blue-600 py-2 px-4 hover:bg-blue-700 flex justify-center items-center gap-3 border border-transparent rounded-md shadow-md text-sm font-medium text-white transition ease-in-out">
+            <button className="w-full rgb-button hover:italic flex justify-center items-center gap-3 border-rgb border-4 rounded-md shadow-md text-sm font-medium text-white transition ease-in-out">
               <img
                 className="w-7"
                 src="https://cdn-icons-png.flaticon.com/128/300/300221.png"
@@ -95,7 +92,7 @@ export default function LoginComponent() {
             </button>
           </div>
           <div>
-            <button className="w-full bg-blue-600 py-2 px-4 hover:bg-blue-700 flex justify-center items-center gap-3 border border-transparent rounded-md shadow-md text-sm font-medium text-white transition ease-in-out">
+            <button className="w-full bg-blue-600 rgb-button py-2 px-4 hover:bg-blue-700 hover:italic flex justify-center items-center gap-3 rounded-md shadow-md text-sm font-medium text-white transition ease-in-out">
               <img
                 className="w-7"
                 src="https://cdn-icons-png.flaticon.com/128/5968/5968764.png"
@@ -108,10 +105,10 @@ export default function LoginComponent() {
             <button
               type="submit"
               disabled={isButtonDisabled}
-              className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-sm font-medium text-white transition ease-in-out ${
+              className={`w-full flex justify-center py-2 px-4 border-rgb border-transparent hover:italic rounded-md shadow-md text-sm font-medium text-white transition ease-in-out ${
                 isButtonDisabled
                   ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-blue-600 hover:bg-blue-700"
+                  : "rgb-button"
               } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}
             >
               Sign in

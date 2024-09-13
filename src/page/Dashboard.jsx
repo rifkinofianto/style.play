@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import Navbar from "../Components/Navbar";
 import Greetings from "../Components/Greetings";
-
 function Dashboard({ page }) {
   return (
     <>
