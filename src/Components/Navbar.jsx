@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import "../App.css";
 
 function Navbar({ page }) {
 
   return (
-    <header className="bg-blue-600 p-4 ">
+    <header className="bg-blue-600 p-4 rgb-gradient">
       <div className="flex justify-center items-center">
         <div className="mr-auto flex gap-3 items-center text-lg md:text-4xl font-bold">
           <img
@@ -14,7 +15,7 @@ function Navbar({ page }) {
           />
           <h1>Style Play</h1>
         </div>
-        <div className="flex gap-4 text-md md:text-2xl">
+        <div className="flex gap-4 text-md md:text-2xl font-semibold">
           {page === "dashboard" && (
             <Link
               className="hover:text-white ease-in-out hover:underline hover:italic"
