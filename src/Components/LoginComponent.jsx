@@ -36,7 +36,7 @@ export default function LoginComponent() {
         <div className="flex justify-center items-center mb-2">
           <img className="w-28" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDbzc545h-aXan19MbkEgA5h4FN_A5BSJRqQ&s" alt="" />
         </div>
-        <h2 className="md:text-3xl text-2xl font-semibold text-center text-white mb-4">
+        <h2 className="md:text-2xl text-xl font-semibold text-center text-white mb-4">
           Login Club Rusa
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">

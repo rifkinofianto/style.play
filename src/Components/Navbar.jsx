@@ -24,7 +24,7 @@ function Navbar({ page }) {
               Product
             </Link>
           )}
-          <Link className="hover:text-white ease-in-out hover:underline hover" to="/">
+          <Link className="hover:text-white ease-in-out hover:underline hover:italic" to="/">
             Log Out
           </Link>
         </div>

@@ -57,7 +57,7 @@ export default function Greetings() {
 
         {/* Contact Details Section */}
         <div className="flex flex-col gap-3 border-b-2 border-b-black pb-5">
-          <h1 className="text-xl md:text-3xl font-bold">
+          <h1 className="text-xl md:text-3xl font-bold text-center">
             Selamat Datang, Fulan di Style Play Gaming Center
           </h1>
           {contactDetails.map((detail, index) => (
