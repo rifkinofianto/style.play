@@ -29,7 +29,7 @@ export default function Greetings() {
     {
       id: 1,
       icon: "https://cdn-icons-png.flaticon.com/128/774/774156.png",
-      description: "Setiap hari 05.00 - 23.00",
+      description: "24 jam kecuali hari minggu dan libur nasional",
     },
     {
       id: 2,
