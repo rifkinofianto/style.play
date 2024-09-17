@@ -15,7 +15,8 @@ export default function Greetings() {
     },
     {
       id: 3,
-      description : "Jika pelanggan datang terlambat, waktu pemesanan tetap dihitung sejak waktu yang dijadwalkan."
+      description:
+        "Jika pelanggan datang terlambat, waktu pemesanan tetap dihitung sejak waktu yang dijadwalkan.",
     },
     {
       id: 4,
@@ -67,8 +68,15 @@ export default function Greetings() {
             Selamat Datang, Fulan di Style Play Gaming Center
           </h1>
           {contactDetails.map((detail, index) => (
-            <div className="flex gap-2 md:text-xl text-lg items-center py-3" key={index}>
-              <img className="md:w-12 w-10" src={detail.icon} alt={`icon-${index}`} />
+            <div
+              className="flex gap-2 md:text-xl text-lg items-center py-3"
+              key={index}
+            >
+              <img
+                className="md:w-12 w-10"
+                src={detail.icon}
+                alt={`icon-${index}`}
+              />
               <p>{detail.description}</p>
             </div>
           ))}
@@ -91,8 +99,11 @@ export default function Greetings() {
             src="https://cdn-icons-png.flaticon.com/128/545/545682.png"
             alt="product-icon"
           />
-          <a className="hover:text-blue-700 hover:underline ease-in-out" href="/product">
-            Booking Sekarang
+          <a
+            className="hover:text-blue-700 hover:underline ease-in-out"
+            href="/product"
+          >
+            Booking Sekarang !
           </a>
         </div>
       </div>

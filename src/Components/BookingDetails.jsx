@@ -51,7 +51,7 @@ const BookingDetails = () => {
             </p>
             <p className="text-lg mb-5">
               <strong className="text-gray-800">Note :</strong> Konfirmasi
-              langsung ke Admin offline dan pilih jamnya di lokasi.
+              langsung ke WhatsApp admin (081234567890) dan pilih jamnya.
             </p>
             {/* Tombol untuk kembali ke dashboard */}
             <button
