@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Logo from "../icon.png";
 import "../App.css";
 
 // Komponen Navbar untuk menampilkan navigasi aplikasi
@@ -11,7 +12,7 @@ function Navbar({ page }) {
         <div className="mr-auto flex md:gap-3 gap-1 items-center text-lg md:text-4xl font-bold">
           <img
             className="md:w-32 h-24 object-cover w-20"
-            src="icon.png"
+            src={Logo}
             alt="Logo..."
           />
           <h1>Style Play</h1>
@@ -25,7 +26,10 @@ function Navbar({ page }) {
               Product
             </Link>
           )}
-          <Link className="hover:text-yellow-600 ease-in-out hover:underline hover:italic" to="/">
+          <Link
+            className="hover:text-yellow-600 ease-in-out hover:underline hover:italic"
+            to="/"
+          >
             Log Out
           </Link>
         </div>

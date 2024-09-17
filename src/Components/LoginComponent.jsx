@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Logo from "../icon.png";
 
 export default function LoginComponent() {
   const [email, setEmail] = useState("");
@@ -35,7 +36,7 @@ export default function LoginComponent() {
       <div className="relative md:w-full w-80 md:max-w-sm bg-gray-900 p-6 rounded-lg shadow-md border-rgb border-gray-800 z-10 rgb-border">
         <div className="flex justify-center items-center mb-2">
           {/* Gambar logo untuk halaman login */}
-          <img className="md:w-32 h-20 object-cover w-28" src="icon.png" alt="" />
+          <img className="md:w-32 h-20 object-cover w-28" src={Logo} alt="" />
         </div>
         <h2 className="md:text-2xl text-xl font-semibold text-center text-white mb-4">
           Login Club Rusa
