@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Logo from "../icon.png";
+import Logo from "../assets/icon.png";
 import "../App.css";
 
 // Komponen Navbar untuk menampilkan navigasi aplikasi
