@@ -91,8 +91,8 @@ export default function Greetings() {
             src="https://cdn-icons-png.flaticon.com/128/545/545682.png"
             alt="product-icon"
           />
-          <a className="hover:text-yellow-600 hover:italic ease-in-out" href="/product">
-            Lihat Product
+          <a className="hover:text-blue-700 hover:underline ease-in-out" href="/product">
+            Booking Sekarang
           </a>
         </div>
       </div>
