@@ -1,4 +1,6 @@
 import "../App.css";
+import Logo from "../assets/main_picture.jpg";
+
 export default function Greetings() {
   const bookingRules = [
     {
@@ -53,8 +55,8 @@ export default function Greetings() {
       <div className="min-h-screen md:px-56 md:py-5 px-3 py-5">
         <div className="flex justify-center mb-5 mt-2 md:mb-10 md:mt-5">
           <img
-            className="md:w-2/3 w-full"
-            src="https://lostinanime.com/wp-content/uploads/2024/07/Shikanoko-Nokonoko-Koshitantan-01-05.jpg"
+            className="md:w-96 h-96 object-cover w-full"
+            src={Logo}
             alt="Gambar utama"
           />
         </div>

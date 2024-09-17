@@ -1,17 +1,17 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Logo from "../assets/icon.png";
+import Logo from "../assets/main_logo.jpg";
 import "../App.css";
 
 // Komponen Navbar untuk menampilkan navigasi aplikasi
 function Navbar({ page }) {
   // Mengembalikan elemen header dengan logo dan tautan navigasi
   return (
-    <header className="bg-blue-600 md:p-4 pr-4 rgb-gradient text-white">
+    <header className="bg-blue-600 md:p-4 p-2 rgb-gradient text-white">
       <div className="flex justify-center items-center">
-        <div className="mr-auto flex md:gap-3 gap-1 items-center text-lg md:text-4xl font-bold">
+        <div className="mr-auto flex gap-4 items-center text-lg md:text-4xl font-bold">
           <img
-            className="md:w-32 h-24 object-cover w-20"
+            className="md:w-32 md:h-24 object-cover h-18 w-16"
             src={Logo}
             alt="Logo..."
           />
