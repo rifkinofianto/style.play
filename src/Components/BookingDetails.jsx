@@ -17,14 +17,6 @@ const BookingDetails = () => {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
-      {/* Menampilkan gambar */}
-      <div className="flex justify-center items-center mb-3">
-        <img
-          src="https://i.pinimg.com/236x/6f/7e/4e/6f7e4ebf587471b6460f2fb6420b4fd0.jpg"
-          alt=""
-          //className="md:w-64 h-32 object-cover w-28"
-        />
-      </div>
       {/* Judul halaman */}
       <h1 className="text-xl md:text-3xl font-bold text-center text-green-600 mb-5">
         Berhasil Booking
@@ -58,8 +50,8 @@ const BookingDetails = () => {
               {formatRupiah(bookingDetails.totalPrice)}
             </p>
             <p className="text-lg mb-5">
-              <strong className="text-gray-800">Note :</strong>{" "}
-              Konfirmasi langsung ke Admin offline dan pilih jamnya di lokasi.
+              <strong className="text-gray-800">Note :</strong> Konfirmasi
+              langsung ke Admin offline dan pilih jamnya di lokasi.
             </p>
             {/* Tombol untuk kembali ke dashboard */}
             <button
