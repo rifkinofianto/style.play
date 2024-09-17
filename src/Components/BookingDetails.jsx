@@ -16,12 +16,13 @@ const BookingDetails = () => {
   }
 
   return (
-    <div className="min-h-screen md:px-56 md:py-5 px-3 py-5 bg-gray-100">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
       {/* Menampilkan gambar */}
       <div className="flex justify-center items-center mb-3">
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDbzc545h-aXan19MbkEgA5h4FN_A5BSJRqQ&s"
+          src="https://i.pinimg.com/236x/6f/7e/4e/6f7e4ebf587471b6460f2fb6420b4fd0.jpg"
           alt=""
+          //className="md:w-64 h-32 object-cover w-28"
         />
       </div>
       {/* Judul halaman */}
@@ -33,28 +34,32 @@ const BookingDetails = () => {
           <>
             {/* Menampilkan detail booking */}
             <p className="text-lg mb-3">
-              <strong className="text-gray-800">Seat:</strong>{" "}
+              <strong className="text-gray-800">Seat :</strong>{" "}
               {bookingDetails.seat}
             </p>
             <p className="text-lg mb-3">
-              <strong className="text-gray-800">Room Type:</strong>{" "}
+              <strong className="text-gray-800">Room Type :</strong>{" "}
               {bookingDetails.roomType}
             </p>
             <p className="text-lg mb-3">
-              <strong className="text-gray-800">Product:</strong>{" "}
+              <strong className="text-gray-800">Product :</strong>{" "}
               {bookingDetails.productName}
             </p>
             <p className="text-lg mb-3">
-              <strong className="text-gray-800">Hours:</strong>{" "}
+              <strong className="text-gray-800">Hours :</strong>{" "}
               {bookingDetails.hours}
             </p>
             <p className="text-lg mb-3">
-              <strong className="text-gray-800">Date:</strong>{" "}
+              <strong className="text-gray-800">Date :</strong>{" "}
               {new Date(bookingDetails.date).toLocaleDateString("id-ID")}
             </p>
             <p className="text-lg mb-5">
-              <strong className="text-gray-800">Total Price:</strong>{" "}
+              <strong className="text-gray-800">Total Price :</strong>{" "}
               {formatRupiah(bookingDetails.totalPrice)}
+            </p>
+            <p className="text-lg mb-5">
+              <strong className="text-gray-800">Note :</strong>{" "}
+              Konfirmasi langsung ke Admin offline dan pilih jamnya di lokasi.
             </p>
             {/* Tombol untuk kembali ke dashboard */}
             <button

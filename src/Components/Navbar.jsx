@@ -6,12 +6,12 @@ import "../App.css";
 function Navbar({ page }) {
   // Mengembalikan elemen header dengan logo dan tautan navigasi
   return (
-    <header className="bg-blue-600 p-4 rgb-gradient">
+    <header className="bg-blue-600 md:p-4 pr-4 rgb-gradient text-white">
       <div className="flex justify-center items-center">
-        <div className="mr-auto flex gap-3 items-center text-lg md:text-4xl font-bold">
+        <div className="mr-auto flex md:gap-3 gap-1 items-center text-lg md:text-4xl font-bold">
           <img
-            className="md:w-16 w-10"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDbzc545h-aXan19MbkEgA5h4FN_A5BSJRqQ&s"
+            className="md:w-32 h-24 object-cover w-20"
+            src="icon.png"
             alt="Logo..."
           />
           <h1>Style Play</h1>
@@ -19,13 +19,13 @@ function Navbar({ page }) {
         <div className="flex gap-4 text-md md:text-2xl font-semibold">
           {page === "dashboard" && (
             <Link
-              className="hover:text-white ease-in-out hover:underline hover:italic"
+              className="hover:text-yellow-600 ease-in-out hover:underline hover:italic"
               to="/product"
             >
               Product
             </Link>
           )}
-          <Link className="hover:text-white ease-in-out hover:underline hover:italic" to="/">
+          <Link className="hover:text-yellow-600 ease-in-out hover:underline hover:italic" to="/">
             Log Out
           </Link>
         </div>

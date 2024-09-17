@@ -129,7 +129,7 @@ const ProductComponent = () => {
     <div className="min-h-screen md:px-56 md:py-5 px-3 py-5">
       {/* Judul dan aturan */}
       <h1 className="text-xl md:text-3xl font-bold text-center underline">
-        Rules of Club Rusa
+        Rules of Style Play
       </h1>
       <div className="flex flex-col gap-3 border-b-2 border-b-black py-5">
         {rules.map((rule, index) => (
