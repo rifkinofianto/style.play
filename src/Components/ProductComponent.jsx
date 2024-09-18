@@ -2,39 +2,19 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ProductComponent = () => {
-  // Daftar aturan yang harus diikuti
   const rules = [
-    {
-      id: 1,
-      description: "Dilarang merokok (Vape diperbolehkan)",
-    },
-    {
-      id: 2,
-      description: "Dilarang membuang sampah sembarangan",
-    },
-    {
-      id: 3,
-      description: "Dilarang merusak properti Style Play",
-    },
-    {
-      id: 4,
-      description: "Dilarang membawa makanan/minuman dari luar",
-    },
-    {
-      id: 5,
-      description: "Dilarang menghapus akun sembarangan",
-    },
-    {
-      id: 6,
-      description: "Dilarang download / hapus game sembarangan",
-    },
+    { id: 1, description: "Dilarang merokok (Vape diperbolehkan)" },
+    { id: 2, description: "Dilarang membuang sampah sembarangan" },
+    { id: 3, description: "Dilarang merusak properti Style Play" },
+    { id: 4, description: "Dilarang membawa makanan/minuman dari luar" },
+    { id: 5, description: "Dilarang menghapus akun sembarangan" },
+    { id: 6, description: "Dilarang download / hapus game sembarangan" },
     {
       id: 7,
       description: "Apabila ada pelanggaran, kami berhak melakukan denda❗️",
     },
   ];
 
-  // Daftar produk yang tersedia untuk dipesan
   const products = [
     {
       id: 1,
@@ -60,41 +40,91 @@ const ProductComponent = () => {
     },
   ];
 
-  // Daftar kursi yang tersedia
   const seats = Array.from({ length: 10 }, (_, i) => i + 1);
 
-  // State untuk menyimpan data form
   const [formData, setFormData] = useState({
     seat: "",
     roomType: "Reguler",
     hours: 1,
-    productId: 1, // Hapus duplikasi ini
-    selectedProduct: null, // Tambahkan ini
-    selectedDate: "", // Tambahkan ini
+    productId: 1,
+    selectedProduct: null,
+    selectedDate: "",
+    paymentMethod: "", // Menambahkan state untuk metode pembayaran
   });
+
+  const paymentMethods = [
+    {
+      id: "bayar-langsung",
+      name: "Bayar Langsung",
+    },
+    {
+      id: "Alfamart",
+      name: "Alfamart",
+      img_url:
+        "https://upload.wikimedia.org/wikipedia/commons/8/86/Alfamart_logo.svg",
+    },
+    {
+      id: "Mandiri",
+      name: "Bank Mandiri",
+      img_url:
+        "https://upload.wikimedia.org/wikipedia/en/thumb/f/fa/Bank_Mandiri_logo.svg/2560px-Bank_Mandiri_logo.svg.png",
+    },
+    {
+      id: "BCA",
+      name: "Bank BCA",
+      img_url:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png",
+    },
+    {
+      id: "Gopay",
+      name: "GoPay",
+      img_url:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/2560px-Gopay_logo.svg.png",
+    },
+    {
+      id: "Ovo",
+      name: "OVO",
+      img_url:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/2560px-Logo_ovo_purple.svg.png",
+    },
+    {
+      id: "Dana",
+      name: "Dana",
+      img_url:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png",
+    },
+  ];
 
   const navigate = useNavigate();
 
-  // Fungsi untuk menangani perubahan input
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Fungsi untuk menangani pengiriman form
+  const handlePaymentMethodSelect = (methodId) => {
+    setFormData({ ...formData, paymentMethod: methodId });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Validasi input
-    const today = new Date().toISOString().split("T")[0]; // Ambil tanggal hari ini
-    if (!formData.seat || !formData.roomType || !formData.hours || !formData.selectedDate || formData.selectedDate < today) { // Tambahkan validasi untuk selectedDate
-      alert("Semua field harus diisi dan tanggal tidak boleh sebelum hari ini!");
+    const today = new Date().toISOString().split("T")[0];
+    if (
+      !formData.seat ||
+      !formData.roomType ||
+      !formData.hours ||
+      !formData.selectedDate ||
+      formData.selectedDate < today ||
+      !formData.paymentMethod
+    ) {
+      alert(
+        "Semua field harus diisi dan tanggal tidak boleh sebelum hari ini!"
+      );
       return;
     }
 
     const selectedProduct = products.find(
       (product) => product.id === Number(formData.productId)
     );
-    // Simpan selectedProduct ke dalam formData
     setFormData({ ...formData, selectedProduct });
 
     const roomPrice =
@@ -110,13 +140,12 @@ const ProductComponent = () => {
       productName: selectedProduct.name,
       date: formData.selectedDate,
       totalPrice,
+      paymentMethod: formData.paymentMethod, // Mengirim metode pembayaran
     };
 
-    // Redirect to the booking details page with the state
     navigate("/booking-details", { state: bookingDetails });
   };
 
-  // Fungsi untuk memformat angka menjadi format Rupiah
   function formatRupiah(number) {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -126,63 +155,69 @@ const ProductComponent = () => {
   }
 
   return (
-    <div className="min-h-screen md:px-56 md:py-5 px-3 py-5">
-      {/* Judul dan aturan */}
-      <h1 className="text-xl md:text-3xl font-bold text-center underline">
-        Rules of Style Play
-      </h1>
-      <div className="flex flex-col gap-3 border-b-2 border-b-black py-5">
-        {rules.map((rule, index) => (
-          <p className="text-lg md:text-xl font-semibold" key={index}>
-            {index + 1}. {rule.description}
-          </p>
-        ))}
+    <div className="min-h-screen md:px-32 lg:px-56 md:py-5 px-5 py-8 bg-gray-50">
+      {/* Section: Rules */}
+      <div className="mb-10">
+        <h1 className="text-xl md:text-3xl font-bold text-center underline mb-5">
+          Rules of Style Play
+        </h1>
+        <div className="flex flex-col gap-3 border-b-2 border-gray-300 py-5">
+          {rules.map((rule, index) => (
+            <p className="text-lg md:text-xl font-semibold" key={index}>
+              {index + 1}. {rule.description}
+            </p>
+          ))}
+        </div>
       </div>
-      {/* Judul dan daftar produk */}
-      <h1 className="text-xl md:text-3xl font-bold text-center underline mt-10 mb-5">
-        Products or Services
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-b-2 border-b-black pb-7">
-        {products.map((product, index) => {
-          return (
-            <div key={index} className="border p-4 rounded-lg shadow-lg">
+
+      {/* Section: Products */}
+      <div className="mb-10">
+        <h1 className="text-xl md:text-3xl font-bold text-center underline mb-5">
+          Products or Services
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {products.map((product, index) => (
+            <div key={index} className="bg-white p-4 rounded-lg shadow-lg">
               <img
-                className="w-full md:h-96 h-72 object-cover rounded-md"
+                className="w-full md:h-72 h-60 object-cover rounded-md"
                 src={product.img_url}
                 alt={product.name}
               />
-              <h2 className="text-xl font-bold mt-3">{product.name}</h2>
-              <p className="text-lg">Capacity: {product.capacity}</p>
-              <p className="text-lg">
-                Room Reguler:{" "}
-                {formatRupiah(product.room_reguler_price_per_hour)} per hour
+              <h2 className="text-xl md:text-2xl font-bold mt-4">
+                {product.name}
+              </h2>
+              <p className="text-md md:text-lg mt-2">
+                Capacity: {product.capacity}
               </p>
-              <p className="text-lg">
-                Room VIP: {formatRupiah(product.room_VIP_price_per_hour)} per
+              <p className="text-md md:text-lg mt-2">
+                Reguler: {formatRupiah(product.room_reguler_price_per_hour)} per
                 hour
               </p>
-              <p className="text-lg mt-2">{product.description}</p>
+              <p className="text-md md:text-lg mt-2">
+                VIP: {formatRupiah(product.room_VIP_price_per_hour)} per hour
+              </p>
+              <p className="text-md md:text-lg mt-2">{product.description}</p>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
 
-      {/* Form untuk pemesanan */}
-      <div className="mt-10">
-        <h2 className="text-xl md:text-3xl font-bold text-center underline">
+      {/* Section: Booking Form */}
+      <div className="bg-white p-6 rounded-lg shadow-lg mt-10">
+        <h2 className="text-xl md:text-3xl font-bold text-center underline mb-5">
           Book a Seat
         </h2>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-5">
-          {/* Pilihan kursi */}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          {/* Choose Seat */}
           <div>
-            <label className="block text-lg md:text-xl font-semibold mb-2">
+            <label className="block text-lg font-semibold mb-2">
               Choose a Seat:
             </label>
             <select
               name="seat"
               value={formData.seat}
               onChange={handleChange}
-              className="p-2 border border-gray-300 rounded-md w-full"
+              className="p-3 border border-gray-300 rounded-md w-full"
             >
               <option value="">Select Seat</option>
               {seats.map((seat) => (
@@ -193,47 +228,45 @@ const ProductComponent = () => {
             </select>
           </div>
 
-          {/* Pilihan jenis ruangan */}
+          {/* Room Type */}
           <div>
-            <label className="block text-lg md:text-xl font-semibold mb-2">
+            <label className="block text-lg font-semibold mb-2">
               Room Type:
             </label>
             <select
               name="roomType"
               value={formData.roomType}
               onChange={handleChange}
-              className="p-2 border border-gray-300 rounded-md w-full"
+              className="p-3 border border-gray-300 rounded-md w-full"
             >
               <option value="reguler">Reguler</option>
               <option value="VIP">VIP</option>
             </select>
           </div>
 
-          {/* Input jam pemesanan */}
+          {/* Hours */}
           <div>
-            <label className="block text-lg md:text-xl font-semibold mb-2">
-              Hours:
-            </label>
+            <label className="block text-lg font-semibold mb-2">Hours:</label>
             <input
               type="number"
               name="hours"
               value={formData.hours}
               onChange={handleChange}
               min="1"
-              className="p-2 border border-gray-300 rounded-md w-full"
+              className="p-3 border border-gray-300 rounded-md w-full"
             />
           </div>
 
-          {/* Pilihan produk */}
+          {/* Choose Product */}
           <div>
-            <label className="block text-lg md:text-xl font-semibold mb-2">
+            <label className="block text-lg font-semibold mb-2">
               Choose a Product:
             </label>
             <select
               name="productId"
               value={formData.productId}
               onChange={handleChange}
-              className="p-2 border border-gray-300 rounded-md w-full"
+              className="p-3 border border-gray-300 rounded-md w-full"
             >
               {products.map((product) => (
                 <option key={product.id} value={product.id}>
@@ -243,9 +276,9 @@ const ProductComponent = () => {
             </select>
           </div>
 
-          {/* Input tanggal pemesanan */}
+          {/* Select Date */}
           <div>
-            <label className="block text-lg md:text-xl font-semibold mb-2">
+            <label className="block text-lg font-semibold mb-2">
               Select Date:
             </label>
             <input
@@ -254,14 +287,45 @@ const ProductComponent = () => {
               value={formData.selectedDate}
               onChange={handleChange}
               min={new Date().toISOString().split("T")[0]}
-              className="p-2 border border-gray-300 rounded-md w-full"
+              className="p-3 border border-gray-300 rounded-md w-full"
             />
           </div>
 
-          {/* Tombol untuk mengirim form */}
+          {/* Section: Payment Methods */}
+          <div className="mt-4">
+            <h2 className="text-md md:text-2xl font-bold text-center underline mb-5">
+              Pilih Metode Pembayaran
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {paymentMethods.map((method) => (
+                <div
+                  key={method.id}
+                  className={`p-4 border rounded-lg cursor-pointer flex flex-col items-center justify-center ${
+                    formData.paymentMethod === method.id
+                      ? "border-blue-500 bg-blue-100"
+                      : "border-gray-300"
+                  }`}
+                  onClick={() => handlePaymentMethodSelect(method.id)}
+                >
+                  {method.img_url ? (
+                    <>
+                      <img
+                        src={method.img_url}
+                        alt={method.name}
+                        className="w-full h-20 object-contain mb-4"
+                      />
+                      <p className="text-center font-semibold">{method.name}</p>
+                    </>
+                  ) : (
+                    <p className="text-center font-semibold">{method.name}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="p-3 bg-blue-500 text-white font-bold rounded-md w-full mt-5"
           >
             Book Now
           </button>

@@ -50,6 +50,10 @@ const BookingDetails = () => {
               {formatRupiah(bookingDetails.totalPrice)}
             </p>
             <p className="text-lg mb-5">
+              <strong className="text-gray-800">Payment Method :</strong>{" "}
+              {bookingDetails.paymentMethod}
+            </p>
+            <p className="text-lg mb-5">
               <strong className="text-gray-800">Note :</strong> Konfirmasi
               langsung ke WhatsApp admin (081234567890) dan pilih jamnya.
             </p>

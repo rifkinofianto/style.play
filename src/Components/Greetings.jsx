@@ -18,10 +18,7 @@ export default function Greetings() {
       description:
         "Jika pelanggan datang terlambat, waktu pemesanan tetap dihitung sejak waktu yang dijadwalkan.",
     },
-    {
-      id: 4,
-      description: "NO RESCHEDULE / REFUND",
-    },
+    { id: 4, description: "NO RESCHEDULE / REFUND" },
     {
       id: 5,
       description: "Jika ingin cancel diharapkan infokan ke admin whatsapp",
@@ -42,7 +39,7 @@ export default function Greetings() {
     {
       id: 3,
       icon: "https://cdn-icons-png.flaticon.com/128/2965/2965306.png",
-      description: "fulan911@gmail.com",
+      description: "styleplay@gmail.com",
     },
     {
       id: 4,
@@ -53,60 +50,70 @@ export default function Greetings() {
 
   return (
     <>
-      <div className="min-h-screen md:px-56 md:py-5 px-3 py-5">
-        <div className="flex justify-center mb-5 mt-2 md:mb-10 md:mt-5">
+      <div className="min-h-screen md:px-56 px-3 py-10 bg-gray-100">
+        {/* Hero Section */}
+        <div className="flex flex-col items-center mb-10">
           <img
-            className="md:w-96 h-96 object-cover w-full"
+            className="w-full md:w-1/2 rounded-lg shadow-lg object-cover"
             src={Logo}
             alt="Gambar utama"
           />
-        </div>
-
-        {/* Contact Details Section */}
-        <div className="flex flex-col gap-3 border-b-2 border-b-black pb-5">
-          <h1 className="text-xl md:text-3xl font-bold text-center">
+          <h1 className="md:text-3xl text-2xl font-bold text-center text-gray-800 mt-8">
             Selamat Datang, Fulan di Style Play Gaming Center
           </h1>
-          {contactDetails.map((detail, index) => (
-            <div
-              className="flex gap-2 md:text-xl text-lg items-center py-3"
-              key={index}
-            >
-              <img
-                className="md:w-12 w-10"
-                src={detail.icon}
-                alt={`icon-${index}`}
-              />
-              <p>{detail.description}</p>
-            </div>
-          ))}
         </div>
 
-        {/* Rules Section */}
-        <div className="flex flex-col gap-3 border-b-2 border-b-black py-5">
-          <h1 className="text-xl md:text-3xl font-bold">Booking Policy</h1>
-          {bookingRules.map((rule, index) => (
-            <p className="text-lg md:text-xl font-semibold" key={index}>
-              - {rule.description}
-            </p>
-          ))}
+        {/* Booking Policy Section */}
+        <div className="bg-white p-6 rounded-lg shadow-md mb-10">
+          <h2 className="md:text-2xl text-xl font-semibold text-gray-700 mb-5 border-b-2 pb-3">
+            Kebijakan Booking
+          </h2>
+          <ul className="list-disc ml-5 md:text-xl text-lg space-y-2">
+            {bookingRules.map((rule) => (
+              <li className="text-lg text-gray-600" key={rule.id}>
+                {rule.description}
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Product Link Section */}
-        <div className="flex gap-2 items-center md:text-xl text-lg py-5">
-          <img
-            className="w-10"
-            src="https://cdn-icons-png.flaticon.com/128/545/545682.png"
-            alt="product-icon"
-          />
+        <div className="flex justify-center md:mb-6 mb-3">
           <a
-            className="hover:text-blue-700 hover:underline ease-in-out"
             href="/product"
+            className="bg-blue-600 md:text-lg text-md text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors ease-in-out duration-300"
           >
-            Booking Sekarang !
+            Booking Sekarang!
           </a>
         </div>
       </div>
+
+      {/* Footer Section */}
+      <footer className="bg-gray-900 text-white md:py-10 py-5">
+        <div className="container mx-auto px-3">
+          <h2 className="md:text-2xl text-xl font-semibold mb-6 text-center md:text-left">
+            Kontak Kami
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-5">
+            {contactDetails.map((detail) => (
+              <div
+                className="flex items-center gap-4 md:text-xl text-lg"
+                key={detail.id}
+              >
+                <img
+                  className="w-10 h-10 md:w-12 md:h-12"
+                  src={detail.icon}
+                  alt={`icon-${detail.id}`}
+                />
+                <p className="">{detail.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="border-t border-gray-700 md:mt-8 mt-4 md:pt-6 pt-3 text-center text-gray-400">
+            <p>&copy; 2024 Style Play Gaming Center. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
