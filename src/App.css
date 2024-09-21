@@ -158,6 +158,6 @@
 }
 
 .animate__animated {
-  animation-duration: 1s; /* Perpanjang durasi animasi */
+  animation-duration: 2s; /* Perpanjang durasi animasi */
   animation-delay: 0.1s; /* Tambahkan delay sebelum mulai animasi */
 }

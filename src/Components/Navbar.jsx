@@ -7,7 +7,7 @@ import "../App.css";
 function Navbar({ page }) {
   // Mengembalikan elemen header dengan logo dan tautan navigasi
   return (
-    <header className="bg-blue-600 md:p-4 p-2 rgb-gradient text-white">
+    <header className="bg-blue-600 md:p-4 p-2 rgb-gradient text-white sticky top-0 z-50">
       <div className="flex justify-center items-center">
         <div className="mr-auto flex gap-4 items-center text-lg md:text-4xl font-bold">
           <img

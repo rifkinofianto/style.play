@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useIntersectionObserver from "../Hook/useIntersectionObserver";
 
 const ProductComponent = () => {
   const rules = [
@@ -154,10 +155,25 @@ const ProductComponent = () => {
     }).format(number);
   }
 
+  const handleIntersect = (entry) => {
+    const isVisible = entry.isIntersecting;
+    if (isVisible) {
+      entry.target.classList.add("animate__animated", "animate__fadeIn");
+    } else {
+      entry.target.classList.remove("animate__animated", "animate__fadeIn");
+    }
+  };
+
+  // Menggunakan custom hook
+  const sectionsRef = useIntersectionObserver(handleIntersect);
+
   return (
     <div className="min-h-screen md:px-32 lg:px-56 md:py-5 px-5 py-8 bg-gray-50">
       {/* Section: Rules */}
-      <div className="mb-10">
+      <div
+        className="mb-10"
+        ref={(refElement) => (sectionsRef.current[0] = refElement)}
+      >
         <h1 className="text-xl md:text-3xl font-bold text-center underline mb-5">
           Rules of Style Play
         </h1>
@@ -171,7 +187,10 @@ const ProductComponent = () => {
       </div>
 
       {/* Section: Products */}
-      <div className="mb-10">
+      <div
+        className="mb-10"
+        ref={(refElement) => (sectionsRef.current[1] = refElement)}
+      >
         <h1 className="text-xl md:text-3xl font-bold text-center underline mb-5">
           Products or Services
         </h1>
@@ -203,13 +222,16 @@ const ProductComponent = () => {
       </div>
 
       {/* Section: Booking Form */}
-      <div className="bg-white p-6 rounded-lg shadow-lg mt-10">
+      <div
+        className="bg-white p-6 rounded-lg shadow-lg mt-10"
+        ref={(refElement) => (sectionsRef.current[2] = refElement)}
+      >
         <h2 className="text-xl md:text-3xl font-bold text-center underline mb-5">
           Book a Seat
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           {/* Choose Seat */}
-          <div>
+          <div ref={(refElement) => (sectionsRef.current[3] = refElement)}>
             <label className="block text-lg font-semibold mb-2">
               Choose a Seat:
             </label>
@@ -229,7 +251,7 @@ const ProductComponent = () => {
           </div>
 
           {/* Room Type */}
-          <div>
+          <div ref={(refElement) => (sectionsRef.current[4] = refElement)}>
             <label className="block text-lg font-semibold mb-2">
               Room Type:
             </label>
@@ -245,7 +267,7 @@ const ProductComponent = () => {
           </div>
 
           {/* Hours */}
-          <div>
+          <div ref={(refElement) => (sectionsRef.current[5] = refElement)}>
             <label className="block text-lg font-semibold mb-2">Hours:</label>
             <input
               type="number"
@@ -258,7 +280,7 @@ const ProductComponent = () => {
           </div>
 
           {/* Choose Product */}
-          <div>
+          <div ref={(refElement) => (sectionsRef.current[6] = refElement)}>
             <label className="block text-lg font-semibold mb-2">
               Choose a Product:
             </label>
@@ -277,7 +299,7 @@ const ProductComponent = () => {
           </div>
 
           {/* Select Date */}
-          <div>
+          <div ref={(refElement) => (sectionsRef.current[7] = refElement)}>
             <label className="block text-lg font-semibold mb-2">
               Select Date:
             </label>
@@ -292,13 +314,17 @@ const ProductComponent = () => {
           </div>
 
           {/* Section: Payment Methods */}
-          <div className="mt-4">
+          <div
+            className="mt-4"
+            ref={(refElement) => (sectionsRef.current[8] = refElement)}
+          >
             <h2 className="text-md md:text-2xl font-bold text-center underline mb-5">
               Pilih Metode Pembayaran
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {paymentMethods.map((method) => (
                 <div
+                  ref={(refElement) => (sectionsRef.current[9] = refElement)}
                   key={method.id}
                   className={`p-4 border rounded-lg cursor-pointer flex flex-col items-center justify-center ${
                     formData.paymentMethod === method.id
@@ -325,6 +351,7 @@ const ProductComponent = () => {
           </div>
           {/* Submit button */}
           <button
+            ref={(refElement) => (sectionsRef.current[10] = refElement)}
             type="submit"
             className="p-3 bg-blue-500 text-white font-bold rounded-md w-full mt-5"
           >
