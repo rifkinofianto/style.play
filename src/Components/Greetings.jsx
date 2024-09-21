@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
-import "../App.css"; // Pastikan untuk menambahkan gaya di sini
-import Logo from "../assets/main_picture.jpg";
-import "animate.css";
+import "../App.css"; // Import file CSS untuk styling
+import Logo from "../assets/main_picture.jpg"; // Import gambar logo
+import "animate.css"; // Import library untuk animasi
 
 export default function Greetings() {
+  // Daftar kebijakan booking
   const bookingRules = [
     {
       id: 1,
@@ -27,11 +28,12 @@ export default function Greetings() {
     },
   ];
 
+  // Daftar detail kontak
   const contactDetails = [
     {
       id: 1,
-      icon: "https://cdn-icons-png.flaticon.com/128/774/774156.png",
-      description: "24 jam kecuali hari minggu dan libur nasional",
+      icon: "https://cdn-icons-png.flaticon.com/128/774/774156.png", // URL icon
+      description: "24 jam kecuali hari minggu dan libur nasional", // Deskripsi kontak
     },
     {
       id: 2,
@@ -49,25 +51,34 @@ export default function Greetings() {
       description: "081234567890",
     },
   ];
+
+  // Ref untuk menyimpan referensi elemen yang akan diawasi
   const sectionsRef = useRef([]);
 
   useEffect(() => {
+    // Membuat instance IntersectionObserver
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
+        // Jika elemen terlihat di viewport
         if (entry.isIntersecting) {
+          // Tambahkan kelas animasi
           entry.target.classList.add("animate__animated", "animate__fadeIn");
         } else {
+          // Hapus kelas animasi ketika tidak terlihat
           entry.target.classList.remove("animate__animated", "animate__fadeIn");
         }
       });
     });
 
+    // Ambil referensi elemen saat ini
     const currentSections = sectionsRef.current;
 
+    // Amati setiap elemen yang ada di currentSections
     currentSections.forEach((section) => {
       if (section) observer.observe(section);
     });
 
+    // Fungsi cleanup untuk menghentikan pengamatan saat komponen dibongkar
     return () => {
       currentSections.forEach((section) => {
         if (section) observer.unobserve(section);
@@ -81,7 +92,7 @@ export default function Greetings() {
         {/* Hero Section */}
         <div
           className="flex flex-col items-center mb-10"
-          ref={(el) => (sectionsRef.current[0] = el)}
+          ref={(refElement) => (sectionsRef.current[0] = refElement)} // Simpan referensi elemen
         >
           <img
             className="w-full md:w-1/2 rounded-lg shadow-lg object-cover"
@@ -96,7 +107,7 @@ export default function Greetings() {
         {/* Booking Policy Section */}
         <div
           className="bg-white p-6 rounded-lg shadow-md mb-10"
-          ref={(el) => (sectionsRef.current[1] = el)}
+          ref={(refElement) => (sectionsRef.current[1] = refElement)} // Simpan referensi elemen
         >
           <h2 className="md:text-2xl text-xl font-semibold text-gray-700 mb-5 border-b-2 pb-3">
             Kebijakan Booking
@@ -104,7 +115,7 @@ export default function Greetings() {
           <ul className="list-disc ml-5 md:text-xl text-lg space-y-2">
             {bookingRules.map((rule) => (
               <li className="text-lg text-gray-600" key={rule.id}>
-                {rule.description}
+                {rule.description} {/* Tampilkan deskripsi kebijakan */}
               </li>
             ))}
           </ul>
@@ -113,7 +124,7 @@ export default function Greetings() {
         {/* Product Link Section */}
         <div
           className="flex justify-center md:mb-6 mb-3"
-          ref={(el) => (sectionsRef.current[2] = el)}
+          ref={(refElement) => (sectionsRef.current[2] = refElement)} // Simpan referensi elemen
         >
           <a
             href="/product"
@@ -127,12 +138,12 @@ export default function Greetings() {
       {/* Footer Section */}
       <footer
         className="bg-gray-900 text-white md:py-10 py-5"
-        ref={(el) => (sectionsRef.current[4] = el)}
+        ref={(refElement) => (sectionsRef.current[4] = refElement)} // Simpan referensi elemen
       >
         <div className="container mx-auto px-3">
           <h2
             className="md:text-2xl text-xl font-semibold mb-6 text-center md:text-left"
-            ref={(el) => (sectionsRef.current[3] = el)}
+            ref={(refElement) => (sectionsRef.current[3] = refElement)} // Simpan referensi elemen
           >
             Kontak Kami
           </h2>
@@ -145,14 +156,14 @@ export default function Greetings() {
                 <img
                   className="w-10 h-10 md:w-12 md:h-12"
                   src={detail.icon}
-                  alt={`icon-${detail.id}`}
+                  alt={`icon-${detail.id}`} // Berikan deskripsi untuk aksesibilitas
                 />
-                <p className="">{detail.description}</p>
+                <p className="">{detail.description}</p> {/* Tampilkan deskripsi kontak */}
               </div>
             ))}
           </div>
           <div className="border-t border-gray-700 md:mt-8 mt-4 md:pt-6 pt-3 text-center text-gray-400">
-            <p>&copy; 2024 Style Play Gaming Center. All rights reserved.</p>
+            <p>&copy; 2024 Style Play Gaming Center. All rights reserved.</p> {/* Tampilkan hak cipta */}
           </div>
         </div>
       </footer>
