@@ -1,5 +1,7 @@
-import "../App.css";
+import { useEffect, useRef } from "react";
+import "../App.css"; // Pastikan untuk menambahkan gaya di sini
 import Logo from "../assets/main_picture.jpg";
+import "animate.css";
 
 export default function Greetings() {
   const bookingRules = [
@@ -47,12 +49,40 @@ export default function Greetings() {
       description: "081234567890",
     },
   ];
+  const sectionsRef = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate__animated", "animate__fadeIn");
+        } else {
+          entry.target.classList.remove("animate__animated", "animate__fadeIn");
+        }
+      });
+    });
+
+    const currentSections = sectionsRef.current;
+
+    currentSections.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      currentSections.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, []);
 
   return (
     <>
       <div className="min-h-screen md:px-56 px-3 py-10 bg-gray-100">
         {/* Hero Section */}
-        <div className="flex flex-col items-center mb-10">
+        <div
+          className="flex flex-col items-center mb-10"
+          ref={(el) => (sectionsRef.current[0] = el)}
+        >
           <img
             className="w-full md:w-1/2 rounded-lg shadow-lg object-cover"
             src={Logo}
@@ -64,7 +94,10 @@ export default function Greetings() {
         </div>
 
         {/* Booking Policy Section */}
-        <div className="bg-white p-6 rounded-lg shadow-md mb-10">
+        <div
+          className="bg-white p-6 rounded-lg shadow-md mb-10"
+          ref={(el) => (sectionsRef.current[1] = el)}
+        >
           <h2 className="md:text-2xl text-xl font-semibold text-gray-700 mb-5 border-b-2 pb-3">
             Kebijakan Booking
           </h2>
@@ -78,7 +111,10 @@ export default function Greetings() {
         </div>
 
         {/* Product Link Section */}
-        <div className="flex justify-center md:mb-6 mb-3">
+        <div
+          className="flex justify-center md:mb-6 mb-3"
+          ref={(el) => (sectionsRef.current[2] = el)}
+        >
           <a
             href="/product"
             className="bg-blue-600 md:text-lg text-md text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors ease-in-out duration-300"
@@ -89,9 +125,15 @@ export default function Greetings() {
       </div>
 
       {/* Footer Section */}
-      <footer className="bg-gray-900 text-white md:py-10 py-5">
+      <footer
+        className="bg-gray-900 text-white md:py-10 py-5"
+        ref={(el) => (sectionsRef.current[4] = el)}
+      >
         <div className="container mx-auto px-3">
-          <h2 className="md:text-2xl text-xl font-semibold mb-6 text-center md:text-left">
+          <h2
+            className="md:text-2xl text-xl font-semibold mb-6 text-center md:text-left"
+            ref={(el) => (sectionsRef.current[3] = el)}
+          >
             Kontak Kami
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-5">

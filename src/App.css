@@ -156,3 +156,8 @@
 .star.active {
   color: gold;
 }
+
+.animate__animated {
+  animation-duration: 0.5s; /* Perpanjang durasi animasi */
+  animation-delay: 0.01s; /* Tambahkan delay sebelum mulai animasi */
+}
