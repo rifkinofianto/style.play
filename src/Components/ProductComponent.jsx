@@ -323,6 +323,7 @@ const ProductComponent = () => {
               ))}
             </div>
           </div>
+          {/* Submit button */}
           <button
             type="submit"
             className="p-3 bg-blue-500 text-white font-bold rounded-md w-full mt-5"
