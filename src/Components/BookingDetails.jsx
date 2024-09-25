@@ -38,6 +38,12 @@ const BookingDetails = () => {
               {bookingDetails.productName}
             </p>
             <p className="text-lg mb-3">
+              <strong className="text-gray-800">Time :</strong>{" "}
+              {bookingDetails.time < 10 ? "0" : ""}
+              {bookingDetails.time}.00 - {bookingDetails.endTime}
+            </p>
+
+            <p className="text-lg mb-3">
               <strong className="text-gray-800">Hours :</strong>{" "}
               {bookingDetails.hours}
             </p>
@@ -54,8 +60,8 @@ const BookingDetails = () => {
               {bookingDetails.paymentMethod}
             </p>
             <p className="text-lg mb-5">
-              <strong className="text-gray-800">Note :</strong> Konfirmasi
-              langsung ke WhatsApp admin (081234567890) dan pilih jamnya.
+              <strong className="text-gray-800">Note :</strong> Pesanan anda
+              sudah kami terima, terima kasih atas kunjungannya.
             </p>
             {/* Tombol untuk kembali ke dashboard */}
             <button

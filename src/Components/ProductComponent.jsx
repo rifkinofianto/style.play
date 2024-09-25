@@ -46,6 +46,8 @@ const ProductComponent = () => {
   const [formData, setFormData] = useState({
     seat: "",
     roomType: "Reguler",
+    selectedTime: "",
+    endTime: "", // tidak ada diinput
     hours: 1,
     productId: 1,
     selectedProduct: null,
@@ -96,6 +98,33 @@ const ProductComponent = () => {
     },
   ];
 
+  const chooseTime = [
+    { id: 1, time: 0 },
+    { id: 2, time: 1 },
+    { id: 3, time: 2 },
+    { id: 4, time: 3 },
+    { id: 5, time: 4 },
+    { id: 6, time: 5 },
+    { id: 7, time: 6 },
+    { id: 8, time: 7 },
+    { id: 9, time: 8 },
+    { id: 10, time: 9 },
+    { id: 11, time: 10 },
+    { id: 12, time: 11 },
+    { id: 13, time: 12 },
+    { id: 14, time: 13 },
+    { id: 15, time: 14 },
+    { id: 16, time: 15 },
+    { id: 17, time: 16 },
+    { id: 18, time: 17 },
+    { id: 19, time: 18 },
+    { id: 20, time: 19 },
+    { id: 21, time: 20 },
+    { id: 22, time: 21 },
+    { id: 23, time: 22 },
+    { id: 24, time: 23 },
+  ];
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -112,6 +141,7 @@ const ProductComponent = () => {
     if (
       !formData.seat ||
       !formData.roomType ||
+      !formData.selectedTime ||
       !formData.hours ||
       !formData.selectedDate ||
       formData.selectedDate < today ||
@@ -134,14 +164,33 @@ const ProductComponent = () => {
         : selectedProduct.room_VIP_price_per_hour;
     const totalPrice = roomPrice * formData.hours;
 
+    // Hitung endTime
+    const selectedHour = Number(formData.selectedTime);
+    const hoursToAdd = Number(formData.hours);
+    const endTime = selectedHour + hoursToAdd; // Menghitung endTime dengan menambahkan hours
+
+    // Mengambil jam dari endTime
+    const endTimeHour = endTime % 24; // Menggunakan % 24 untuk memastikan jam tidak lebih dari 23
+    const isNextDay = endTime >= 24; // Memeriksa apakah endTime lebih dari atau sama dengan 24
+    const endTimeFormatted =
+      endTimeHour < 10 ? `0${endTimeHour}.00` : `${endTimeHour}.00`; // Format menjadi xx.00
+
+    // Tambahkan keterangan "Keesokan Harinya"
+    const endTimeDisplay = isNextDay
+      ? `${endTimeFormatted} (Keesokan Harinya)`
+      : endTimeFormatted;
+
+    // Mengirim data booking ke halaman booking-details
     const bookingDetails = {
       seat: formData.seat,
       roomType: formData.roomType,
+      time: formData.selectedTime,
+      endTime: endTimeDisplay,
       hours: formData.hours,
       productName: selectedProduct.name,
       date: formData.selectedDate,
       totalPrice,
-      paymentMethod: formData.paymentMethod, // Mengirim metode pembayaran
+      paymentMethod: formData.paymentMethod,
     };
 
     navigate("/booking-details", { state: bookingDetails });
@@ -270,6 +319,24 @@ const ProductComponent = () => {
             </select>
           </div>
 
+          {/* Jam */}
+          <div ref={(refElement) => (sectionsRef.current[6] = refElement)}>
+            <label className="block text-lg font-semibold mb-2">Jam:</label>
+            <select
+              name="selectedTime"
+              value={formData.selectedTime}
+              onChange={handleChange}
+              className="p-3 border border-gray-300 rounded-md w-full"
+            >
+              <option value="">Select Time</option> {/* Default option */}
+              {chooseTime.map((times) => (
+                <option key={times.id} value={times.time}>
+                  {times.time}.00
+                </option>
+              ))}
+            </select>
+          </div>
+
           {/* Hours */}
           <div ref={(refElement) => (sectionsRef.current[6] = refElement)}>
             <label className="block text-lg font-semibold mb-2">Hours:</label>
@@ -279,6 +346,7 @@ const ProductComponent = () => {
               value={formData.hours}
               onChange={handleChange}
               min="1"
+              max="12"
               className="p-3 border border-gray-300 rounded-md w-full"
             />
           </div>
