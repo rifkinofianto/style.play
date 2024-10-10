@@ -426,7 +426,7 @@ const ProductComponent = () => {
           {/* Submit button */}
           <button
             type="submit"
-            className="p-3 bg-blue-500 text-white font-bold rounded-md w-full mt-5"
+            className="p-3 bg-blue-500 hover:bg-blue-600 hover:italic text-white md:text-lg text-md font-bold rounded-md w-full mt-5"
           >
             Book Now
           </button>

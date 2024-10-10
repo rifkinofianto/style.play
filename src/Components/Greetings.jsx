@@ -107,7 +107,7 @@ export default function Greetings() {
         >
           <a
             href="/product"
-            className="bg-blue-600 md:text-lg text-md text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors ease-in-out duration-300"
+            className="bg-blue-600 md:text-lg text-md text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 hover:italic transition-colors ease-in-out duration-300"
           >
             Booking Sekarang!
           </a>
