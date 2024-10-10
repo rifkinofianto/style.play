@@ -32,9 +32,9 @@ export default function LoginComponent() {
   const isButtonDisabled = !email || !password;
 
   return (
-    <div className="flex items-center justify-center min-h-screen relative rgb-gradient">
+    <div className="min-h-screen w-full flex flex-col justify-center items-center rgb-gradient">
       {/* Main Content */}
-      <div className="relative md:w-full w-80 md:max-w-sm bg-gray-900 p-6 rounded-lg shadow-md border-rgb border-gray-800 z-10 rgb-border">
+      <div className="lex flex-col justify-center items-center md:max-w-xl md:w-full w-96 mx-auto my-5 p-8 bg-gray-800 rounded-lg shadow-mdz-10 rgb-border">
         <div className="flex justify-center items-center mb-2">
           {/* Gambar logo untuk halaman login */}
           <img className="md:w-full h-40 object-cover w-full mb-2" src={Logo} alt="" />
